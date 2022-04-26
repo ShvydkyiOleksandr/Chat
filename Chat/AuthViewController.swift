@@ -26,7 +26,10 @@ class AuthViewController: UIViewController {
         view.backgroundColor = .white
         setupConstraints()
     }
-    
+}
+
+// MARK: - Setup Constraints
+extension AuthViewController {
     private func setupConstraints() {
         let googleView = ButtonFromView(label: googleLabel, button: googleButton)
         let emailView = ButtonFromView(label: emailLabel, button: emailButton)
@@ -53,8 +56,7 @@ class AuthViewController: UIViewController {
 }
 
 
-// MARK: -SwiftUI
-
+// MARK: - SwiftUI
 import SwiftUI
 
 struct AuthVCProvider: PreviewProvider {

@@ -22,7 +22,6 @@ class ButtonFromView: UIView {
         NSLayoutConstraint.activate([
             label.topAnchor.constraint(equalTo: self.topAnchor),
             label.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-//            label.heightAnchor.constraint(equalToConstant: 60)
         ])
         
         NSLayoutConstraint.activate([
