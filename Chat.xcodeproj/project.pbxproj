@@ -9,21 +9,29 @@
 /* Begin PBXBuildFile section */
 		6D053BC128187D5200E2666B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D053BC028187D5200E2666B /* AppDelegate.swift */; };
 		6D053BC328187D5200E2666B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D053BC228187D5200E2666B /* SceneDelegate.swift */; };
-		6D053BC528187D5200E2666B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D053BC428187D5200E2666B /* ViewController.swift */; };
-		6D053BC828187D5200E2666B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D053BC628187D5200E2666B /* Main.storyboard */; };
+		6D053BC528187D5200E2666B /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D053BC428187D5200E2666B /* AuthViewController.swift */; };
 		6D053BCA28187D5200E2666B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D053BC928187D5200E2666B /* Assets.xcassets */; };
 		6D053BCD28187D5200E2666B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D053BCB28187D5200E2666B /* LaunchScreen.storyboard */; };
+		6D053BD528188B2300E2666B /* UIButton + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D053BD428188B2300E2666B /* UIButton + Extension.swift */; };
+		6D053BD728188DBD00E2666B /* UIFont + Extansion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D053BD628188DBD00E2666B /* UIFont + Extansion.swift */; };
+		6D053BD928188E9D00E2666B /* UIColor + Extrnsion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D053BD828188E9D00E2666B /* UIColor + Extrnsion.swift */; };
+		6D053BDB281891AA00E2666B /* Label + Extansion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D053BDA281891AA00E2666B /* Label + Extansion.swift */; };
+		6D053BDD281892C200E2666B /* UIImageView + Extansion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D053BDC281892C200E2666B /* UIImageView + Extansion.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		6D053BBD28187D5200E2666B /* Chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D053BC028187D5200E2666B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6D053BC228187D5200E2666B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		6D053BC428187D5200E2666B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		6D053BC728187D5200E2666B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6D053BC428187D5200E2666B /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		6D053BC928187D5200E2666B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6D053BCC28187D5200E2666B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6D053BCE28187D5200E2666B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6D053BD428188B2300E2666B /* UIButton + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton + Extension.swift"; sourceTree = "<group>"; };
+		6D053BD628188DBD00E2666B /* UIFont + Extansion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont + Extansion.swift"; sourceTree = "<group>"; };
+		6D053BD828188E9D00E2666B /* UIColor + Extrnsion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extrnsion.swift"; sourceTree = "<group>"; };
+		6D053BDA281891AA00E2666B /* Label + Extansion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Label + Extansion.swift"; sourceTree = "<group>"; };
+		6D053BDC281892C200E2666B /* UIImageView + Extansion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView + Extansion.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,8 +66,12 @@
 			children = (
 				6D053BC028187D5200E2666B /* AppDelegate.swift */,
 				6D053BC228187D5200E2666B /* SceneDelegate.swift */,
-				6D053BC428187D5200E2666B /* ViewController.swift */,
-				6D053BC628187D5200E2666B /* Main.storyboard */,
+				6D053BC428187D5200E2666B /* AuthViewController.swift */,
+				6D053BD428188B2300E2666B /* UIButton + Extension.swift */,
+				6D053BD628188DBD00E2666B /* UIFont + Extansion.swift */,
+				6D053BD828188E9D00E2666B /* UIColor + Extrnsion.swift */,
+				6D053BDA281891AA00E2666B /* Label + Extansion.swift */,
+				6D053BDC281892C200E2666B /* UIImageView + Extansion.swift */,
 				6D053BC928187D5200E2666B /* Assets.xcassets */,
 				6D053BCB28187D5200E2666B /* LaunchScreen.storyboard */,
 				6D053BCE28187D5200E2666B /* Info.plist */,
@@ -127,7 +139,6 @@
 			files = (
 				6D053BCD28187D5200E2666B /* LaunchScreen.storyboard in Resources */,
 				6D053BCA28187D5200E2666B /* Assets.xcassets in Resources */,
-				6D053BC828187D5200E2666B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +149,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6D053BC528187D5200E2666B /* ViewController.swift in Sources */,
+				6D053BDD281892C200E2666B /* UIImageView + Extansion.swift in Sources */,
+				6D053BC528187D5200E2666B /* AuthViewController.swift in Sources */,
 				6D053BC128187D5200E2666B /* AppDelegate.swift in Sources */,
+				6D053BD728188DBD00E2666B /* UIFont + Extansion.swift in Sources */,
 				6D053BC328187D5200E2666B /* SceneDelegate.swift in Sources */,
+				6D053BD928188E9D00E2666B /* UIColor + Extrnsion.swift in Sources */,
+				6D053BD528188B2300E2666B /* UIButton + Extension.swift in Sources */,
+				6D053BDB281891AA00E2666B /* Label + Extansion.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		6D053BC628187D5200E2666B /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6D053BC728187D5200E2666B /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		6D053BCB28187D5200E2666B /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -292,7 +300,6 @@
 				INFOPLIST_FILE = Chat/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -320,7 +327,6 @@
 				INFOPLIST_FILE = Chat/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
