@@ -33,6 +33,8 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        googleButton.customizeGooglebutton()
 
         view.backgroundColor = .white
         setupConstraints()
