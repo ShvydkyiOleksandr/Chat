@@ -9,7 +9,19 @@ import UIKit
 
 class SetupProfileViewController: UIViewController {
     
-    let fillImageView = AddPhotoView()
+    let welcomelabel = UILabel(text: "Set up Profile!", font: .avenir26())
+    
+    let fullNamelabel = UILabel(text: "Full name")
+    let aboutMeLabel = UILabel(text: "About me")
+    let sexLabel = UILabel(text: "Sex")
+    
+    let fullNameTextField = OneLineTextField(font: .avenir20())
+    let AboutMeTextField = OneLineTextField(font: .avenir20())
+    let sexSegmentedControl = UISegmentedControl(firsrt: "Male", second: "Femail")
+    
+    let goToChatsButton = UIButton(title: "Go to chats", titleColor: .white, backgroundColor: .buttonDark(), cornerRadius: 4)
+    
+    let fullImageView = AddPhotoView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,12 +35,57 @@ class SetupProfileViewController: UIViewController {
 extension SetupProfileViewController {
     private func setupConstraints() {
         
-        fillImageView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(fillImageView)
+        let fillNameStackView = UIStackView(arrangedSubviews: [
+        fullNamelabel,
+        fullNameTextField
+        ],
+                                            axis: .vertical,
+                                            spacing: 0)
+        let aboutMeStackView = UIStackView(arrangedSubviews: [
+        aboutMeLabel,
+        AboutMeTextField
+        ],
+                                            axis: .vertical,
+                                            spacing: 0)
+        let sexStackView = UIStackView(arrangedSubviews: [
+        sexLabel,
+        sexSegmentedControl
+        ],
+                                            axis: .vertical,
+                                            spacing: 12)
+        
+        goToChatsButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        let stackView = UIStackView(arrangedSubviews: [
+            fillNameStackView,
+            aboutMeStackView,
+            sexStackView,
+            goToChatsButton
+        ],
+                                    axis: .vertical,
+                                    spacing: 40)
+        
+        welcomelabel.translatesAutoresizingMaskIntoConstraints = false
+        fullImageView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(welcomelabel)
+        view.addSubview(fullImageView)
+        view.addSubview(stackView)
         
         NSLayoutConstraint.activate([
-            fillImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 160),
-            fillImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            welcomelabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 160),
+            welcomelabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            fullImageView.topAnchor.constraint(equalTo: welcomelabel.bottomAnchor, constant: 40),
+            fullImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(equalTo: fullImageView.bottomAnchor, constant: 40),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40)
         ])
     }
 }
@@ -38,7 +95,7 @@ import SwiftUI
 
 struct SetupProfileVCProvider: PreviewProvider {
     static var previews: some View {
-        ContainerView().edgesIgnoringSafeArea(.all)
+        ContainerView().previewDevice("iPhone 13 Pro Max").edgesIgnoringSafeArea(.all)
     }
     
     struct ContainerView: UIViewControllerRepresentable {
