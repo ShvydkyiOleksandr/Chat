@@ -95,7 +95,7 @@ import SwiftUI
 
 struct SetupProfileVCProvider: PreviewProvider {
     static var previews: some View {
-        ContainerView().previewDevice("iPhone 13 Pro Max").edgesIgnoringSafeArea(.all)
+        ContainerView().edgesIgnoringSafeArea(.all)
     }
     
     struct ContainerView: UIViewControllerRepresentable {
