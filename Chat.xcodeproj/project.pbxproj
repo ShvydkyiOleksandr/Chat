@@ -26,6 +26,7 @@
 		6D5590CC281C71F500C266C2 /* activeChats.json in Resources */ = {isa = PBXBuildFile; fileRef = 6D5590CA281C71F500C266C2 /* activeChats.json */; };
 		6D5590CE281C71FE00C266C2 /* Bundle-Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5590CD281C71FE00C266C2 /* Bundle-Decodable.swift */; };
 		6D5590D1281C7D7100C266C2 /* ActiveChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5590D0281C7D7100C266C2 /* ActiveChatCell.swift */; };
+		6D5590D3281C8EA900C266C2 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5590D2281C8EA900C266C2 /* GradientView.swift */; };
 		6D9AC695281B15250050F364 /* SetupProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9AC694281B15250050F364 /* SetupProfileViewController.swift */; };
 		6D9AC697281B180F0050F364 /* AddPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9AC696281B180F0050F364 /* AddPhotoView.swift */; };
 		6D9AC69B281B2FAE0050F364 /* SegmentedControl + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9AC69A281B2FAE0050F364 /* SegmentedControl + Extension.swift */; };
@@ -56,6 +57,7 @@
 		6D5590CA281C71F500C266C2 /* activeChats.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = activeChats.json; sourceTree = "<group>"; };
 		6D5590CD281C71FE00C266C2 /* Bundle-Decodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle-Decodable.swift"; sourceTree = "<group>"; };
 		6D5590D0281C7D7100C266C2 /* ActiveChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveChatCell.swift; sourceTree = "<group>"; };
+		6D5590D2281C8EA900C266C2 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		6D9AC694281B15250050F364 /* SetupProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupProfileViewController.swift; sourceTree = "<group>"; };
 		6D9AC696281B180F0050F364 /* AddPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPhotoView.swift; sourceTree = "<group>"; };
 		6D9AC69A281B2FAE0050F364 /* SegmentedControl + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SegmentedControl + Extension.swift"; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				6D053BE02818988900E2666B /* ButtonFromView.swift */,
 				6D053BE82818A72F00E2666B /* OneLineTextField.swift */,
 				6D5590CD281C71FE00C266C2 /* Bundle-Decodable.swift */,
+				6D5590D2281C8EA900C266C2 /* GradientView.swift */,
 				6D053BDE2818972500E2666B /* UIKit */,
 			);
 			path = Extensions;
@@ -238,6 +241,7 @@
 			files = (
 				6D053BE92818A72F00E2666B /* OneLineTextField.swift in Sources */,
 				6D053BE72818A3F800E2666B /* SignUpViewController.swift in Sources */,
+				6D5590D3281C8EA900C266C2 /* GradientView.swift in Sources */,
 				6D9AC6A1281B444C0050F364 /* MainTabBarController.swift in Sources */,
 				6D053BDD281892C200E2666B /* UIImageView + Extansion.swift in Sources */,
 				6D5590D1281C7D7100C266C2 /* ActiveChatCell.swift in Sources */,
