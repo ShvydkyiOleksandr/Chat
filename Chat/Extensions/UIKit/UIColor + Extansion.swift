@@ -1,5 +1,5 @@
 //
-//  UIColor + Extrnsion.swift
+//  UIColor + Extansion.swift
 //  Chat
 //
 //  Created by Олександр Швидкий on 26.04.2022.
