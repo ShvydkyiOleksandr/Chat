@@ -46,9 +46,9 @@ class SignUpViewController: UIViewController {
                                               password: passwordTextField.text,
                                               confirmPassword: confirmPasswordTextField.text) { result in
             switch result {
-            case .success(_):
+            case .success(let user):
                 self.showAlert(with: "Successfully!", and: "You are registered") {
-                    self.present(SetupProfileViewController(), animated: true, completion: nil)
+                    self.present(SetupProfileViewController(currentUser: user), animated: true, completion: nil)
                 }
             case .failure(let error):
                 self.showAlert(with: "Error", and: error.localizedDescription)

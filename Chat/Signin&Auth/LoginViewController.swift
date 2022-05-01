@@ -51,7 +51,7 @@ class LoginViewController: UIViewController {
             switch result {
             case .success(_):
                 self.showAlert(with: "Successfully!", and: "You are authorized") {
-                    self.present(SetupProfileViewController(), animated: true, completion: nil)
+                    self.present(MainTabBarController(), animated: true, completion: nil)
                 }
             case .failure(let error):
                 self.showAlert(with: "Error", and: error.localizedDescription)
