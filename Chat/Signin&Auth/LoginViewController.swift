@@ -7,11 +7,6 @@
 
 import UIKit
 
-protocol AuthNavigationDelegate: AnyObject {
-    func toLoginVC()
-    func toSignUpVC()
-}
-
 class LoginViewController: UIViewController {
     
     let welcomelabel = UILabel(text: "Welcome back!", font: .avenir26())
