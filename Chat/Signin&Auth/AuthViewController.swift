@@ -32,16 +32,28 @@ class AuthViewController: UIViewController {
         
         emailButton.addTarget(self, action: #selector(emailButtonTapped) , for: .touchUpInside)
         loginButton.addTarget(self, action: #selector(loginButtonTapped) , for: .touchUpInside)
+        
+        signUpVC.delegate = self
+        loginVC.delegate = self
     }
     
     @objc private func emailButtonTapped() {
-        print(#function)
         present(signUpVC, animated: true, completion: nil)
     }
     
     @objc private func loginButtonTapped() {
-        print(#function)
         present(loginVC, animated: true, completion: nil)
+    }
+}
+
+// MARK: - AuthNavigationDelegate
+extension AuthViewController: AuthNavigationDelegate {
+    func toLoginVC() {
+        present(loginVC, animated: true, completion: nil)
+    }
+    
+    func toSignUpVC() {
+        present(signUpVC, animated: true, completion: nil)
     }
 }
 
