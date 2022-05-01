@@ -19,6 +19,8 @@ class AuthViewController: UIViewController {
     let emailLabel = UILabel(text: "Or sign up with")
     let alreadyOnBoardLabel = UILabel(text: "Already onboard?")
     
+    let signUpVC = SignUpViewController()
+    let loginVC = LoginViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +29,19 @@ class AuthViewController: UIViewController {
         
         view.backgroundColor = .white
         setupConstraints()
+        
+        emailButton.addTarget(self, action: #selector(emailButtonTapped) , for: .touchUpInside)
+        loginButton.addTarget(self, action: #selector(loginButtonTapped) , for: .touchUpInside)
+    }
+    
+    @objc private func emailButtonTapped() {
+        print(#function)
+        present(signUpVC, animated: true, completion: nil)
+    }
+    
+    @objc private func loginButtonTapped() {
+        print(#function)
+        present(loginVC, animated: true, completion: nil)
     }
 }
 
