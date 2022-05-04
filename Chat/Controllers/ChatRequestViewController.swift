@@ -46,7 +46,6 @@ class ChatRequestViewController: UIViewController {
 // MARK: - Setup Constraints
 extension ChatRequestViewController {
     private func setupConstraints() {
-        
         view.addSubview(imageView)
         view.addSubview(containerView)
         containerView.addSubview(nameLabel)
@@ -93,9 +92,6 @@ extension ChatRequestViewController {
         ])
     }
 }
-
-
-
 
 // MARK: - SwiftUI
 import SwiftUI

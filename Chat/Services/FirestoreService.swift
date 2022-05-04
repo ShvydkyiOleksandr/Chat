@@ -12,9 +12,7 @@ import FirebaseFirestore
 class FirestoreService {
     
     static let shared = FirestoreService()
-    
     let db = Firestore.firestore()
-    
     private var usersRef: CollectionReference {
         return db.collection("users")
     }
@@ -35,7 +33,6 @@ class FirestoreService {
     }
     
     func saveProfileWith(id: String, email: String, username: String?, avatarImageString: String?, description: String?, sex: String?, completion: @escaping(Result<MUser, Error>) -> Void) {
-        
         guard Validators.isFilled(username: username, description: description, sex: sex) else {
             completion(.failure(UserError.notFilled))
             return
