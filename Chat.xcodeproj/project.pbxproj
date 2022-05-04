@@ -58,6 +58,8 @@
 		6DD686312822F18500FD6EE3 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 6DD686302822F18500FD6EE3 /* FirebaseStorage */; };
 		6DD686342822F25100FD6EE3 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 6DD686332822F25100FD6EE3 /* GoogleSignIn */; };
 		6DD686362822FF6500FD6EE3 /* UIAplication + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD686352822FF6500FD6EE3 /* UIAplication + Extension.swift */; };
+		6DD68638282311D000FD6EE3 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD68637282311D000FD6EE3 /* StorageService.swift */; };
+		6DD6863A2823154000FD6EE3 /* UIImage + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD686392823154000FD6EE3 /* UIImage + Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -109,6 +111,8 @@
 		6DD5647C281E0CC00054B781 /* Validators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validators.swift; sourceTree = "<group>"; };
 		6DD5647E281E0F3E0054B781 /* AuthenticationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationError.swift; sourceTree = "<group>"; };
 		6DD686352822FF6500FD6EE3 /* UIAplication + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAplication + Extension.swift"; sourceTree = "<group>"; };
+		6DD68637282311D000FD6EE3 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
+		6DD686392823154000FD6EE3 /* UIImage + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				6DB32F4E281DCD09002010C7 /* UIView + Extension.swift */,
+				6DD686392823154000FD6EE3 /* UIImage + Extension.swift */,
 				6DD686352822FF6500FD6EE3 /* UIAplication + Extension.swift */,
 				6D053BD428188B2300E2666B /* UIButton + Extension.swift */,
 				6DB32F48281DAF2E002010C7 /* UIViewController + Extansion.swift */,
@@ -263,6 +268,7 @@
 				6D5590E4281CA5C800C266C2 /* Models */,
 				6DD5647A281E02850054B781 /* AuthenticationService.swift */,
 				6D7599FE281F2685004D6EE4 /* FirestoreService.swift */,
+				6DD68637282311D000FD6EE3 /* StorageService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -390,12 +396,14 @@
 				6D053BC128187D5200E2666B /* AppDelegate.swift in Sources */,
 				6DD5647F281E0F3E0054B781 /* AuthenticationError.swift in Sources */,
 				6D053BD728188DBD00E2666B /* UIFont + Extansion.swift in Sources */,
+				6DD68638282311D000FD6EE3 /* StorageService.swift in Sources */,
 				6DB32F4F281DCD09002010C7 /* UIView + Extension.swift in Sources */,
 				6D9AC697281B180F0050F364 /* AddPhotoView.swift in Sources */,
 				6D053BE12818988900E2666B /* ButtonFromView.swift in Sources */,
 				6D053BC328187D5200E2666B /* SceneDelegate.swift in Sources */,
 				6DB32F47281DACD5002010C7 /* UserCell.swift in Sources */,
 				6D9AC69B281B2FAE0050F364 /* SegmentedControl + Extension.swift in Sources */,
+				6DD6863A2823154000FD6EE3 /* UIImage + Extension.swift in Sources */,
 				6D5590D7281C94C100C266C2 /* WaitingChatCell.swift in Sources */,
 				6D053BD928188E9D00E2666B /* UIColor + Extansion.swift in Sources */,
 				6D053BD528188B2300E2666B /* UIButton + Extension.swift in Sources */,
