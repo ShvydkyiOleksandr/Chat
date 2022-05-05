@@ -8,7 +8,7 @@
 import UIKit
 
 class SectionHeader: UICollectionReusableView {
-    
+
     static let reuseId = "SectionHeader"
     
     let title = UILabel()
@@ -37,6 +37,4 @@ class SectionHeader: UICollectionReusableView {
         fatalError("init(coder:) has not been implemented")
     }
 }
-
-let sectionHeader = SectionHeader()
 

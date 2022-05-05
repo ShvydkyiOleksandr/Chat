@@ -59,8 +59,7 @@ class AuthenticationService {
             
             guard let authentication = user?.authentication, let idToken = authentication.idToken else { return }
             
-            let credential = GoogleAuthProvider.credential(withIDToken: idToken,
-                                                accessToken: authentication.accessToken)
+            let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: authentication.accessToken)
             
             Auth.auth().signIn(with: credential) { authResult, error in
                 
@@ -77,15 +76,14 @@ class AuthenticationService {
                         topVC.showAlert(with: "Successfully", and: "You are authorized") {
                             let mainTabBar = MainTabBarController(currentUser: muser)
                             mainTabBar.modalPresentationStyle = .fullScreen
-                            UIApplication.getTopViewController()?.present(mainTabBar, animated: true, completion: nil)
+                            topVC.present(mainTabBar, animated: true, completion: nil)
                         }
                     case .failure(_):
                         topVC.showAlert(with: "Successfully", and: "You are register") {
-                            UIApplication.getTopViewController()?.present(SetupProfileViewController(currentUser: user), animated: true, completion: nil)
+                            topVC.present(SetupProfileViewController(currentUser: user), animated: true, completion: nil)
                         }
                     } // result
                 }
-                
                 // User is signed in
                 // ...
             }

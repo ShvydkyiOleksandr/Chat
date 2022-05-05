@@ -35,7 +35,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         } else {
             window?.rootViewController = AuthViewController()
         }
-        window?.makeKeyAndVisible()
+        window?.makeKeyAndVisible() //chek this point
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

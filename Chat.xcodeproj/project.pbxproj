@@ -38,6 +38,7 @@
 		6D5590E3281CA52B00C266C2 /* MChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5590E2281CA52B00C266C2 /* MChat.swift */; };
 		6D7599FD281F221E004D6EE4 /* AuthNavigationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7599FC281F221E004D6EE4 /* AuthNavigationDelegate.swift */; };
 		6D7599FF281F2685004D6EE4 /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7599FE281F2685004D6EE4 /* FirestoreService.swift */; };
+		6D88660F28245E23000A9BC8 /* WaitingChatsNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D88660E28245E23000A9BC8 /* WaitingChatsNavigation.swift */; };
 		6D8B4E87281F2D010061EFB4 /* UserError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8B4E86281F2D010061EFB4 /* UserError.swift */; };
 		6D9AC695281B15250050F364 /* SetupProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9AC694281B15250050F364 /* SetupProfileViewController.swift */; };
 		6D9AC697281B180F0050F364 /* AddPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9AC696281B180F0050F364 /* AddPhotoView.swift */; };
@@ -98,6 +99,7 @@
 		6D5590E2281CA52B00C266C2 /* MChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MChat.swift; sourceTree = "<group>"; };
 		6D7599FC281F221E004D6EE4 /* AuthNavigationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthNavigationDelegate.swift; sourceTree = "<group>"; };
 		6D7599FE281F2685004D6EE4 /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
+		6D88660E28245E23000A9BC8 /* WaitingChatsNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingChatsNavigation.swift; sourceTree = "<group>"; };
 		6D8B4E86281F2D010061EFB4 /* UserError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserError.swift; sourceTree = "<group>"; };
 		6D9AC694281B15250050F364 /* SetupProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupProfileViewController.swift; sourceTree = "<group>"; };
 		6D9AC696281B180F0050F364 /* AddPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPhotoView.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 			children = (
 				6D5590D8281C95F400C266C2 /* CellConfigurationCell.swift */,
 				6D7599FC281F221E004D6EE4 /* AuthNavigationDelegate.swift */,
+				6D88660E28245E23000A9BC8 /* WaitingChatsNavigation.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -421,6 +424,7 @@
 				6D053BD528188B2300E2666B /* UIButton + Extension.swift in Sources */,
 				6D053BDB281891AA00E2666B /* Label + Extansion.swift in Sources */,
 				6D053BEB2818B2FA00E2666B /* LoginViewController.swift in Sources */,
+				6D88660F28245E23000A9BC8 /* WaitingChatsNavigation.swift in Sources */,
 				6D053BE328189EDF00E2666B /* UIStackView + Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
