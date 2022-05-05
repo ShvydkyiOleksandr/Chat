@@ -73,7 +73,7 @@ struct TextFieldProvider: PreviewProvider {
     }
     
     struct ContainerView: UIViewControllerRepresentable {
-        let viewController = ProfileViewController()
+        let viewController = ProfileViewController(user: MUser(username: "aaa", email: "sss", description: "sss", sex: "male", avatarStringURL: "https://miro.medium.com/max/1400/1*maZR8BZJE9qMdeMuTSC0rQ.png", id: "1"))
         
         func makeUIViewController(context: Context) -> some UIViewController {
             return viewController
