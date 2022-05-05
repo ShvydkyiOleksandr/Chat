@@ -64,6 +64,8 @@
 		6DD686362822FF6500FD6EE3 /* UIAplication + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD686352822FF6500FD6EE3 /* UIAplication + Extension.swift */; };
 		6DD68638282311D000FD6EE3 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD68637282311D000FD6EE3 /* StorageService.swift */; };
 		6DD6863A2823154000FD6EE3 /* UIImage + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD686392823154000FD6EE3 /* UIImage + Extension.swift */; };
+		6DFABBC1282489ED0070AA71 /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6DFABBC0282489ED0070AA71 /* MessageKit */; };
+		6DFABBC328248A6C0070AA71 /* ChatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFABBC228248A6C0070AA71 /* ChatsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -120,6 +122,7 @@
 		6DD686352822FF6500FD6EE3 /* UIAplication + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAplication + Extension.swift"; sourceTree = "<group>"; };
 		6DD68637282311D000FD6EE3 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		6DD686392823154000FD6EE3 /* UIImage + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Extension.swift"; sourceTree = "<group>"; };
+		6DFABBC228248A6C0070AA71 /* ChatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +133,7 @@
 				6D1F0AFB28233BFC00EBBF98 /* SDWebImage in Frameworks */,
 				6DD686342822F25100FD6EE3 /* GoogleSignIn in Frameworks */,
 				6DD6862B2822F18500FD6EE3 /* FirebaseAnalytics in Frameworks */,
+				6DFABBC1282489ED0070AA71 /* MessageKit in Frameworks */,
 				6DD686312822F18500FD6EE3 /* FirebaseStorage in Frameworks */,
 				6DD6862D2822F18500FD6EE3 /* FirebaseAuth in Frameworks */,
 				6DD6862F2822F18500FD6EE3 /* FirebaseFirestore in Frameworks */,
@@ -266,6 +270,7 @@
 				6D9AC6A2281B45050050F364 /* PeopleViewController.swift */,
 				6DB32F4A281DC2AD002010C7 /* ProfileViewController.swift */,
 				6DA3EB88281DEE8E00D1356A /* ChatRequestViewController.swift */,
+				6DFABBC228248A6C0070AA71 /* ChatsViewController.swift */,
 				6D5590CF281C7D4E00C266C2 /* Cell */,
 				6D5590DD281CA31E00C266C2 /* Header */,
 			);
@@ -317,6 +322,7 @@
 				6DD686302822F18500FD6EE3 /* FirebaseStorage */,
 				6DD686332822F25100FD6EE3 /* GoogleSignIn */,
 				6D1F0AFA28233BFC00EBBF98 /* SDWebImage */,
+				6DFABBC0282489ED0070AA71 /* MessageKit */,
 			);
 			productName = Chat;
 			productReference = 6D053BBD28187D5200E2666B /* Chat.app */;
@@ -350,6 +356,7 @@
 				6DD686292822F18500FD6EE3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				6DD686322822F25100FD6EE3 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				6D1F0AF928233BFC00EBBF98 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				6DFABBBF282489ED0070AA71 /* XCRemoteSwiftPackageReference "MessageKit" */,
 			);
 			productRefGroup = 6D053BBE28187D5200E2666B /* Products */;
 			projectDirPath = "";
@@ -409,6 +416,7 @@
 				6D8B4E87281F2D010061EFB4 /* UserError.swift in Sources */,
 				6D053BC128187D5200E2666B /* AppDelegate.swift in Sources */,
 				6DD5647F281E0F3E0054B781 /* AuthenticationError.swift in Sources */,
+				6DFABBC328248A6C0070AA71 /* ChatsViewController.swift in Sources */,
 				6D053BD728188DBD00E2666B /* UIFont + Extansion.swift in Sources */,
 				6DD68638282311D000FD6EE3 /* StorageService.swift in Sources */,
 				6DB32F4F281DCD09002010C7 /* UIView + Extension.swift in Sources */,
@@ -659,6 +667,14 @@
 				minimumVersion = 6.0.0;
 			};
 		};
+		6DFABBBF282489ED0070AA71 /* XCRemoteSwiftPackageReference "MessageKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MessageKit/MessageKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -691,6 +707,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6DD686322822F25100FD6EE3 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignIn;
+		};
+		6DFABBC0282489ED0070AA71 /* MessageKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6DFABBBF282489ED0070AA71 /* XCRemoteSwiftPackageReference "MessageKit" */;
+			productName = MessageKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

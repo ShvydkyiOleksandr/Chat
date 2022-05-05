@@ -51,7 +51,6 @@ extension ActiveChatCell  {
         addSubview(friendName)
         addSubview(lastMessage)
         
-        
         NSLayoutConstraint.activate([
             friendImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             friendImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
