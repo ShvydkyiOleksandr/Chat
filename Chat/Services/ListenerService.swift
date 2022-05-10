@@ -10,6 +10,7 @@ import FirebaseAuth
 import FirebaseFirestore
 
 class ListenerService {
+    
     static let shared = ListenerService()
     
     private let db = Firestore.firestore()
@@ -24,7 +25,7 @@ class ListenerService {
     
     func usersObserve(users: [MUser], completion: @escaping(Result<[MUser], Error>) -> Void) -> ListenerRegistration? {
         var users = users
-        let userListenner = usersRef.addSnapshotListener { querySnapshot, error in
+        let usersListener = usersRef.addSnapshotListener { querySnapshot, error in
             guard let snapshot = querySnapshot else {
                 completion(.failure(error!))
                 return
@@ -46,18 +47,18 @@ class ListenerService {
             }
             completion(.success(users))
         }
-        return userListenner
-    }
+        return usersListener
+    } // usersObserve
     
     func waitingChatsObserve(chats: [MChat], completion: @escaping(Result<[MChat], Error>) -> Void) -> ListenerRegistration? {
         var chats = chats
-        let chatRef = db.collection(["users", currentUserId, "waitingChats"].joined(separator: "/"))
-        let chatsListener = chatRef.addSnapshotListener { querySnapshot, error in
+        let chatsRef = db.collection(["users", currentUserId, "waitingChats"].joined(separator: "/"))
+        let chatsListener = chatsRef.addSnapshotListener { (querySnapshot, error) in
             guard let snapshot = querySnapshot else {
                 completion(.failure(error!))
                 return
             }
-            snapshot.documentChanges.forEach { diff in
+            snapshot.documentChanges.forEach { (diff) in
                 guard let chat = MChat(document: diff.document) else { return }
                 switch diff.type {
                 case .added:
@@ -76,10 +77,10 @@ class ListenerService {
         return chatsListener
     }
     
-    func activeChatObserve(chats: [MChat], completion: @escaping(Result<[MChat], Error>) -> Void) -> ListenerRegistration? {
+    func activeChatsObserve(chats: [MChat], completion: @escaping (Result<[MChat], Error>) -> Void) -> ListenerRegistration? {
         var chats = chats
-        let chatRef = db.collection(["users", currentUserId, "activeChats"].joined(separator: "/"))
-        let chatsListener = chatRef.addSnapshotListener { querySnapshot, error in
+        let chatsRef = db.collection(["users", currentUserId, "activeChats"].joined(separator: "/"))
+        let chatsListener = chatsRef.addSnapshotListener { querySnapshot, error in
             guard let snapshot = querySnapshot else {
                 completion(.failure(error!))
                 return
@@ -103,9 +104,9 @@ class ListenerService {
         return chatsListener
     }
     
-    func messageObserve(chat: MChat, completion: @escaping(Result<MMessage, Error>) -> Void) -> ListenerRegistration? {
+    func messagesObserve(chat: MChat, completion: @escaping(Result<MMessage, Error>) -> Void) -> ListenerRegistration? {
         let ref = usersRef.document(currentUserId).collection("activeChats").document(chat.friendId).collection("messages")
-        let messageListener = ref.addSnapshotListener { querySnapshot, error in
+        let messagesListener = ref.addSnapshotListener { querySnapshot, error in
             guard let snapshot = querySnapshot else {
                 completion(.failure(error!))
                 return
@@ -122,6 +123,6 @@ class ListenerService {
                 }
             }
         }
-        return messageListener
+        return messagesListener
     }
 }

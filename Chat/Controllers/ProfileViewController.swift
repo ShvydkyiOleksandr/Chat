@@ -59,13 +59,13 @@ class ProfileViewController: UIViewController {
         }
     }
     
-    @objc func sendMessage() {
+    @objc private func sendMessage() {
         guard let message = myTextField.text, message != "" else { return }
         
         self.dismiss(animated: true) {
             FirestoreService.shared.createWaitingChat(message: message, receiver: self.user) { result in
                 switch result {
-                case .success():
+                case .success:
                     UIApplication.getTopViewController()?.showAlert(with: "Successfully", and: "Your message for \(self.user.username) are sent")
                 case .failure(let error):
                     UIApplication.getTopViewController()?.showAlert(with: "Error", and: error.localizedDescription)

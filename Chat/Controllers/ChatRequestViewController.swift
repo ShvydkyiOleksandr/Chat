@@ -44,13 +44,13 @@ class ChatRequestViewController: UIViewController {
     
     @objc private func denyButtonTapped() {
         self.dismiss(animated: true) {
-            self.delegate?.removeWaitingChats(chat: self.chat)
+            self.delegate?.removeWaitingChat(chat: self.chat)
         }
     }
     
     @objc private func acceptButtonTapped() {
         self.dismiss(animated: true) {
-            self.delegate?.chatToActive(chat: self.chat)
+            self.delegate?.changeToActive(chat: self.chat)
         }
     }
     

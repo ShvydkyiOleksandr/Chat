@@ -8,6 +8,6 @@
 import Foundation
 
 protocol WaitingChatsNavigation: AnyObject {
-    func removeWaitingChats(chat: MChat)
-    func chatToActive(chat: MChat)
+    func removeWaitingChat(chat: MChat)
+    func changeToActive(chat: MChat)
 }

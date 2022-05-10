@@ -58,7 +58,7 @@ class ChatsViewController: MessagesViewController {
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
         
-        messageListener = ListenerService.shared.messageObserve(chat: chat, completion: { result in
+        messageListener = ListenerService.shared.messagesObserve(chat: chat, completion: { result in
             switch result {
             case .success(var message):
                 if let url = message.downloadURL {

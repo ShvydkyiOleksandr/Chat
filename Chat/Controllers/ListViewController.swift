@@ -72,7 +72,7 @@ class ListViewController: UIViewController {
             }
         })
         
-        activeChatsListener = ListenerService.shared.activeChatObserve(chats: activeChats, completion: { result in
+        activeChatsListener = ListenerService.shared.activeChatsObserve(chats: activeChats, completion: { result in
             switch result {
             case .success(let chats):
                 self.activeChats = chats
@@ -244,21 +244,21 @@ extension ListViewController: UICollectionViewDelegate {
 
 // MARK: - WaitingChatsNavigation
 extension ListViewController: WaitingChatsNavigation {
-    func removeWaitingChats(chat: MChat) {
-        FirestoreService.shared.deleteWaitingChat(chat: chat) { result in
+    func removeWaitingChat(chat: MChat) {
+        FirestoreService.shared.deleteWaitingChat(chat: chat) { (result) in
             switch result {
-            case .success():
-                self.showAlert(with: "Successfully", and: "Chat with \(chat.friendUsername) was deleted")
+            case .success:
+                self.showAlert(with: "Успешно!", and: "Чат с \(chat.friendUsername) был удален")
             case .failure(let error):
-                self.showAlert(with: "Error!", and: error.localizedDescription)
+                self.showAlert(with: "Ошибка!", and: error.localizedDescription)
             }
         }
     }
     
-    func chatToActive(chat: MChat) {
-        FirestoreService.shared.changeToActive(chat: chat) { result in
+    func changeToActive(chat: MChat) {
+        FirestoreService.shared.changeToActive(chat: chat) { (result) in
             switch result {
-            case .success():
+            case .success:
                 self.showAlert(with: "Successfully", and: "Have a nice chat with \(chat.friendUsername).")
             case .failure(let error):
                 self.showAlert(with: "Error!", and: error.localizedDescription)
