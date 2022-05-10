@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseAuth
 import SDWebImage
+import Firebase
 
 class SetupProfileViewController: UIViewController {
     
@@ -33,7 +34,6 @@ class SetupProfileViewController: UIViewController {
             fullNameTextField.text = username
         }
         
-        // TODO set google image
         if let photoURL = currentUser.photoURL {
             fullImageView.circleImageView.sd_setImage(with: photoURL)
         }
@@ -93,10 +93,34 @@ class SetupProfileViewController: UIViewController {
     }
     
     @objc private func plusButtonTapped() {
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.delegate = self
-        imagePickerController.sourceType = .photoLibrary
-        present(imagePickerController, animated: true, completion: nil)
+        let cameraIcon = #imageLiteral(resourceName: "camera")
+        let photoIcon = #imageLiteral(resourceName: "photo")
+        
+        let actionSheet = UIAlertController(title: nil,
+                                            message: nil,
+                                            preferredStyle: .actionSheet)
+        
+        let camera = UIAlertAction(title: "Camera", style: .default) { _ in
+            self.chooseImagePicker(source: .camera)
+        }
+        
+        camera.setValue(cameraIcon, forKey: "image")
+        camera.setValue(CATextLayerAlignmentMode.left, forKey: "titleTextAlignment")
+        
+        let photo = UIAlertAction(title: "Photo", style: .default) { _ in
+            self.chooseImagePicker(source: .photoLibrary)
+        }
+        
+        photo.setValue(photoIcon, forKey: "image")
+        photo.setValue(CATextLayerAlignmentMode.left, forKey: "titleTextAlignment")
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        actionSheet.addAction(camera)
+        actionSheet.addAction(photo)
+        actionSheet.addAction(cancel)
+        
+        present(actionSheet, animated: true)
     }
 }
 
@@ -165,6 +189,16 @@ extension SetupProfileViewController: UINavigationControllerDelegate, UIImagePic
         picker.dismiss(animated: true, completion: nil)
         guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
         fullImageView.circleImageView.image = image
+    }
+    
+    func chooseImagePicker(source: UIImagePickerController.SourceType) {
+        if UIImagePickerController.isSourceTypeAvailable(source) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.allowsEditing = true
+            imagePicker.sourceType = source
+            present(imagePicker, animated: true)
+        }
     }
 }
 

@@ -10,7 +10,7 @@ import UIKit
 class ChatRequestViewController: UIViewController {
     
     let containerView = UIView()
-    let imageView = UIImageView(image: #imageLiteral(resourceName: "human2"), contentMode: .scaleAspectFill)
+    let imageView = UIImageView(image: UIImage(systemName: "person.circle")!, contentMode: .scaleAspectFill)
     let nameLabel = UILabel(text: "Peter Ben", font: .systemFont(ofSize: 20, weight: .light))
     let aboutMeLabel = UILabel(text: "You have the opportunity to start a new chat", font: .systemFont(ofSize: 16, weight: .light))
     let acceptButton = UIButton(title: "Accept", titleColor: .white, backgroundColor: .black, font: .LaoSangamMN20(), isShadow: false, cornerRadius: 10)
@@ -24,6 +24,7 @@ class ChatRequestViewController: UIViewController {
         self.chat = chat
         nameLabel.text = chat.friendUsername
         imageView.sd_setImage(with: URL(string: chat.friendAvatarStringURL))
+        imageView.backgroundColor = .mainWhite()
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -37,6 +38,8 @@ class ChatRequestViewController: UIViewController {
         view.backgroundColor = .mainWhite()
         customizeElements()
         setupConstraints()
+        
+        imageView.backgroundColor = .mainWhite()
         
         denyButton.addTarget(self, action: #selector(denyButtonTapped), for: .touchUpInside)
         acceptButton.addTarget(self, action: #selector(acceptButtonTapped), for: .touchUpInside)

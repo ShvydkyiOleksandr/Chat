@@ -248,9 +248,9 @@ extension ListViewController: WaitingChatsNavigation {
         FirestoreService.shared.deleteWaitingChat(chat: chat) { (result) in
             switch result {
             case .success:
-                self.showAlert(with: "Успешно!", and: "Чат с \(chat.friendUsername) был удален")
+                self.showAlert(with: "Successfully!", and: "chat with \(chat.friendUsername) was deleted")
             case .failure(let error):
-                self.showAlert(with: "Ошибка!", and: error.localizedDescription)
+                self.showAlert(with: "Error!", and: error.localizedDescription)
             }
         }
     }

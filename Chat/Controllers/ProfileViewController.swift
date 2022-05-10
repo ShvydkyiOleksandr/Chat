@@ -11,7 +11,7 @@ import SDWebImage
 class ProfileViewController: UIViewController {
     
     let containerView = UIView()
-    let imageView = UIImageView(image: #imageLiteral(resourceName: "human2"), contentMode: .scaleAspectFill)
+    let imageView = UIImageView(image: UIImage(systemName: "person.circle")!, contentMode: .scaleAspectFill)
     let nameLabel = UILabel(text: "Peter Ben", font: .systemFont(ofSize: 20, weight: .light))
     let aboutMeLabel = UILabel(text: "You have the opportunity to chat with the best man in the world", font: .systemFont(ofSize: 16, weight: .light))
     let myTextField = InsertableTextField()
@@ -65,7 +65,7 @@ class ProfileViewController: UIViewController {
         self.dismiss(animated: true) {
             FirestoreService.shared.createWaitingChat(message: message, receiver: self.user) { result in
                 switch result {
-                case .success:
+                case .success():
                     UIApplication.getTopViewController()?.showAlert(with: "Successfully", and: "Your message for \(self.user.username) are sent")
                 case .failure(let error):
                     UIApplication.getTopViewController()?.showAlert(with: "Error", and: error.localizedDescription)

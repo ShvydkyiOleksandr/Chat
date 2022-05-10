@@ -13,6 +13,8 @@ class FirestoreService {
     
     static let shared = FirestoreService()
     
+    var myFirstMessage: MMessage!
+    
     let db = Firestore.firestore()
     
     private var usersRef: CollectionReference {
@@ -50,7 +52,7 @@ class FirestoreService {
             completion(.failure(UserError.notFilled))
             return
         }
-        guard avatarImage != #imageLiteral(resourceName: "avatar") else {
+        guard avatarImage != UIImage(systemName: "person.circle") else {
             completion(.failure(UserError.photoNotExist))
             return
         }
@@ -80,6 +82,10 @@ class FirestoreService {
     func createWaitingChat(message: String, receiver: MUser, completion: @escaping (Result<Void, Error>) -> Void) {
         let reference = db.collection(["users", receiver.id, "waitingChats"].joined(separator: "/"))
         let messageRef = reference.document(self.currentUser.id).collection("messages")
+        
+        let myfirstMessage = MMessage(user: currentUser, content: message)
+        self.myFirstMessage = myfirstMessage
+        
         let message = MMessage(user: currentUser, content: message)
         let chat = MChat(friendUsername: currentUser.username,
                          friendAvatarStringURL: currentUser.avatarStringURL,

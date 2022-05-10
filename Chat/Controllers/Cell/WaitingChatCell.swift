@@ -11,7 +11,13 @@ class WaitingChatCell: UICollectionViewCell, SelfConfiguringCell {
     
     static var reuseId: String = "WaitingChatCell"
     
-    let friendImageView = UIImageView()
+    let friendImageView: UIImageView = {
+        let view = UIImageView()
+        view.contentMode = .scaleAspectFill
+        view.clipsToBounds = true
+        view.backgroundColor = .white
+        return view
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)

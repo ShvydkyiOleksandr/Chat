@@ -12,20 +12,20 @@ class MainTabBarController: UITabBarController {
     
     private let currentUser: MUser
     
-    init(currentUser: MUser = MUser(username: "Max",
-                                    email: "sheva199931@gmail.com",
-                                    description: "I love to chat",
-                                    sex: "Make",
-                                    avatarStringURL: "some",
-                                    id: "1")) {
-        self.currentUser = currentUser
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-//    init(currentUser: MUser) {
+//    init(currentUser: MUser = MUser(username: "Max",
+//                                    email: "sheva199931@gmail.com",
+//                                    description: "I love to chat",
+//                                    sex: "Make",
+//                                    avatarStringURL: "some",
+//                                    id: "1")) {
 //        self.currentUser = currentUser
 //        super.init(nibName: nil, bundle: nil)
 //    }
+    
+    init(currentUser: MUser) {
+        self.currentUser = currentUser
+        super.init(nibName: nil, bundle: nil)
+    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

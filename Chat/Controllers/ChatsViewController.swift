@@ -17,7 +17,7 @@ public struct Sender: SenderType {
 
 class ChatsViewController: MessagesViewController {
     
-    private var messages: [MMessage] = []
+    var messages: [MMessage] = []
     private var messageListener: ListenerRegistration?
     
     private let user: MUser
@@ -73,7 +73,16 @@ class ChatsViewController: MessagesViewController {
                         }
                     }
                 } else {
-                        self.insertNewMessage(message: message)
+                    self.insertNewMessage(message: message)
+                    guard let myfirstMessage = FirestoreService.shared.myFirstMessage else { return }
+                    guard myfirstMessage.id != FirestoreService.shared.currentUser.id else { return }
+                    if !self.messages.contains(myfirstMessage) {
+                        self.messages.append(myfirstMessage)
+                        self.messages = self.messages.sorted()
+                    }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        self.messages.removeFirst()
+                    }
                 }
             case .failure(let error):
                 self.showAlert(with: "Error!", and: error.localizedDescription)
