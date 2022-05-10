@@ -24,7 +24,7 @@ class WaitingChatCell: UICollectionViewCell, SelfConfiguringCell {
     
     func configure<U>(with value: U) where U : Hashable {
         guard let chat: MChat = value as? MChat else { return }
-        friendImageView.image = UIImage(named: chat.friendAvatarStringURL)
+//        friendImageView.image = UIImage(named: chat.friendAvatarStringURL)
         friendImageView.sd_setImage(with: URL(string: chat.friendAvatarStringURL))
     }
     
@@ -46,20 +46,20 @@ class WaitingChatCell: UICollectionViewCell, SelfConfiguringCell {
 }
 
 // MARK: - SwiftUI
-import SwiftUI
-
-struct WaitingChatProvider: PreviewProvider {
-    static var previews: some View {
-        ContainerView().edgesIgnoringSafeArea(.all)
-    }
-    
-    struct ContainerView: UIViewControllerRepresentable {
-        let viewController = MainTabBarController()
-        
-        func makeUIViewController(context: Context) -> some UIViewController {
-            return viewController
-        }
-        
-        func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
-    }
-}
+//import SwiftUI
+//
+//struct WaitingChatProvider: PreviewProvider {
+//    static var previews: some View {
+//        ContainerView().edgesIgnoringSafeArea(.all)
+//    }
+//    
+//    struct ContainerView: UIViewControllerRepresentable {
+//        let viewController = MainTabBarController()
+//        
+//        func makeUIViewController(context: Context) -> some UIViewController {
+//            return viewController
+//        }
+//        
+//        func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
+//    }
+//}

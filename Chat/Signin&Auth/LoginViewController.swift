@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Firebase
+import GoogleSignIn
 
 class LoginViewController: UIViewController {
     
@@ -44,6 +46,18 @@ class LoginViewController: UIViewController {
         loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
         signUpButton.addTarget(self, action: #selector(signUpButtonTapped), for: .touchUpInside)
         googleButton.addTarget(self, action: #selector(googleButtonTapped), for: .touchUpInside)
+        
+        emailTextField.keyboardType = .emailAddress
+        emailTextField.returnKeyType = .done
+        emailTextField.autocapitalizationType = UITextAutocapitalizationType.none
+        emailTextField.delegate = self
+        
+        passwordTextField.isSecureTextEntry = true
+        passwordTextField.returnKeyType = .done
+        passwordTextField.delegate = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(sender:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     @objc private func loginButtonTapped() {
@@ -76,7 +90,7 @@ class LoginViewController: UIViewController {
     }
     
     @objc private func googleButtonTapped() {
-        AuthenticationService.shared.googleLogin()
+        AuthenticationService.shared.googleLogin(viewController: self)
     }
 }
 
@@ -115,12 +129,12 @@ extension LoginViewController {
         view.addSubview(bottomStackView)
         
         NSLayoutConstraint.activate([
-            welcomelabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
+            welcomelabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
             welcomelabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
         
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: welcomelabel.bottomAnchor, constant: 160),
+            stackView.topAnchor.constraint(equalTo: welcomelabel.bottomAnchor, constant: 50),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40)
         ])
@@ -133,21 +147,38 @@ extension LoginViewController {
     }
 }
 
-// MARK: - SwiftUI
-import SwiftUI
-
-struct LoginVCProvider: PreviewProvider {
-    static var previews: some View {
-        ContainerView().edgesIgnoringSafeArea(.all)
+// MARK: Text field delegate
+extension LoginViewController: UITextFieldDelegate {
+    //Hide the keyboard on click on Done
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
-    struct ContainerView: UIViewControllerRepresentable {
-        let viewController = LoginViewController()
-        
-        func makeUIViewController(context: Context) -> some UIViewController {
-            return viewController
-        }
-        
-        func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
+    @objc func keyboardWillShow(sender: NSNotification) {
+         self.view.frame.origin.y = -150 // Move view 150 points upward
+    }
+
+    @objc func keyboardWillHide(sender: NSNotification) {
+         self.view.frame.origin.y = 0 // Move view to original position
     }
 }
+
+// MARK: - SwiftUI
+//import SwiftUI
+//
+//struct LoginVCProvider: PreviewProvider {
+//    static var previews: some View {
+//        ContainerView().edgesIgnoringSafeArea(.all)
+//    }
+//
+//    struct ContainerView: UIViewControllerRepresentable {
+//        let viewController = LoginViewController()
+//
+//        func makeUIViewController(context: Context) -> some UIViewController {
+//            return viewController
+//        }
+//
+//        func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
+//    }
+//}

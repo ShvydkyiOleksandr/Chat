@@ -23,18 +23,18 @@ class ListenerService {
     }
     
     func usersObserve(users: [MUser], completion: @escaping(Result<[MUser], Error>) -> Void) -> ListenerRegistration? {
+        var users = users
         let userListenner = usersRef.addSnapshotListener { querySnapshot, error in
-            var users = users
             guard let snapshot = querySnapshot else {
                 completion(.failure(error!))
                 return
             }
-            
             snapshot.documentChanges.forEach { diff in
                 guard let muser = MUser(document: diff.document) else { return }
                 switch diff.type {
                 case .added:
-                    guard !users.contains(muser), muser.id != self.currentUserId else { return }
+                    guard !users.contains(muser) else { return }
+                    guard muser.id != self.currentUserId else { return }
                     users.append(muser)
                 case .modified:
                     guard let index = users.firstIndex(of: muser) else { return }
@@ -49,7 +49,7 @@ class ListenerService {
         return userListenner
     }
     
-    func waitingsChatObserve(chats: [MChat], completion: @escaping(Result<[MChat], Error>) -> Void) -> ListenerRegistration? {
+    func waitingChatsObserve(chats: [MChat], completion: @escaping(Result<[MChat], Error>) -> Void) -> ListenerRegistration? {
         var chats = chats
         let chatRef = db.collection(["users", currentUserId, "waitingChats"].joined(separator: "/"))
         let chatsListener = chatRef.addSnapshotListener { querySnapshot, error in
@@ -70,8 +70,8 @@ class ListenerService {
                     guard let index = chats.firstIndex(of: chat) else { return }
                     chats.remove(at: index)
                 }
-                completion(.success(chats))
             }
+            completion(.success(chats))
         }
         return chatsListener
     }
@@ -97,8 +97,8 @@ class ListenerService {
                     guard let index = chats.firstIndex(of: chat) else { return }
                     chats.remove(at: index)
                 }
-                completion(.success(chats))
             }
+            completion(.success(chats))
         }
         return chatsListener
     }

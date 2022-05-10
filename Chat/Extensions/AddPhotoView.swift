@@ -12,8 +12,9 @@ class AddPhotoView: UIView {
     var circleImageView: UIImageView = {
        let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = #imageLiteral(resourceName: "avatar")
-        imageView.contentMode = .center
+        imageView.image = UIImage(systemName: "person.circle")
+        imageView.tintColor = .buttonDark()
+        imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.borderColor = UIColor.black.cgColor
         imageView.layer.borderWidth = 1
@@ -41,8 +42,8 @@ class AddPhotoView: UIView {
         NSLayoutConstraint.activate([
             circleImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
             circleImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
-            circleImageView.widthAnchor.constraint(equalToConstant: 100),
-            circleImageView.heightAnchor.constraint(equalToConstant: 100)
+            circleImageView.widthAnchor.constraint(equalToConstant: 120),
+            circleImageView.heightAnchor.constraint(equalToConstant: 120)
         ])
         
         NSLayoutConstraint.activate([

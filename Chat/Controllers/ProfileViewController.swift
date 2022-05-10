@@ -22,6 +22,7 @@ class ProfileViewController: UIViewController {
         self.user = user
         self.nameLabel.text = user.username
         self.aboutMeLabel.text = user.description
+  
         self.imageView.sd_setImage(with: URL(string: user.avatarStringURL), completed: nil)
         super.init(nibName: nil, bundle: nil)
     }
@@ -36,6 +37,11 @@ class ProfileViewController: UIViewController {
         view.backgroundColor = .mainWhite()
         setupConstraints()
         customizeElements()
+        
+        myTextField.delegate = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(sender:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     private func customizeElements() {
@@ -57,7 +63,7 @@ class ProfileViewController: UIViewController {
         guard let message = myTextField.text, message != "" else { return }
         
         self.dismiss(animated: true) {
-            FirestoreService.shared.createWaitingChats(message: message, receiver: self.user) { result in
+            FirestoreService.shared.createWaitingChat(message: message, receiver: self.user) { result in
                 switch result {
                 case .success():
                     UIApplication.getTopViewController()?.showAlert(with: "Successfully", and: "Your message for \(self.user.username) are sent")
@@ -113,21 +119,38 @@ extension ProfileViewController {
     }
 }
 
-// MARK: - SwiftUI
-import SwiftUI
-
-struct ProfileVCProvider: PreviewProvider {
-    static var previews: some View {
-        ContainerView().edgesIgnoringSafeArea(.all)
+// MARK: Text field delegate
+extension ProfileViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool { //Hide the keyboard on click on Done
+        textField.resignFirstResponder()
+        return true
     }
     
-    struct ContainerView: UIViewControllerRepresentable {
-        let viewController = ProfileViewController(user: MUser(username: "aaa", email: "sss", description: "sss", sex: "male", avatarStringURL: "https://miro.medium.com/max/1400/1*maZR8BZJE9qMdeMuTSC0rQ.png", id: "1"))
-        
-        func makeUIViewController(context: Context) -> some UIViewController {
-            return viewController
-        }
-        
-        func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
+    @objc func keyboardWillShow(sender: NSNotification) {
+         self.view.frame.origin.y = -300 // Move view 150 points upward
+    }
+
+    @objc func keyboardWillHide(sender: NSNotification) {
+         self.view.frame.origin.y = 0 // Move view to original position
     }
 }
+
+
+// MARK: - SwiftUI
+//import SwiftUI
+//
+//struct ProfileVCProvider: PreviewProvider {
+//    static var previews: some View {
+//        ContainerView().edgesIgnoringSafeArea(.all)
+//    }
+//
+//    struct ContainerView: UIViewControllerRepresentable {
+//        let viewController = ProfileViewController(user: MUser(username: "Yyana", email: "sss", description: "I like to chat", sex: "male", avatarStringURL: "https://firebasestorage.googleapis.com:443/v0/b/chat-c5959.appspot.com/o/avatars%2Frd4v56RrokabNngECoPPXzu57lv1?alt=media&token=abf3d7d8-3f9a-489c-a655-4775232b5aa5", id: "1"))
+//
+//        func makeUIViewController(context: Context) -> some UIViewController {
+//            return viewController
+//        }
+//
+//        func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
+//    }
+//}

@@ -26,7 +26,7 @@ struct MUser: Hashable, Decodable {
     }
     
     init?(document: DocumentSnapshot) {
-        guard let data = document.data() else { return nil }
+        guard let data = document.data() else { return nil}
         guard let username = data["username"] as? String,
         let email = data["email"] as? String,
         let avatarStringURL = data["avatarStringURL"] as? String,
@@ -43,7 +43,7 @@ struct MUser: Hashable, Decodable {
     }
     
     init?(document: QueryDocumentSnapshot) {
-        let data = document.data() 
+        let data = document.data()
         guard let username = data["username"] as? String,
         let email = data["email"] as? String,
         let avatarStringURL = data["avatarStringURL"] as? String,
@@ -61,11 +61,11 @@ struct MUser: Hashable, Decodable {
     
     var representation: [String: Any] {
         var rep = ["username": username]
-        rep["email"] = self.email
-        rep["description"] = self.description
-        rep["sex"] = self.sex
-        rep["avatarStringURL"] = self.avatarStringURL
-        rep["uid"] = self.id
+        rep["email"] = email
+        rep["description"] = description
+        rep["sex"] = sex
+        rep["avatarStringURL"] = avatarStringURL
+        rep["uid"] = id
         return rep
     }
     

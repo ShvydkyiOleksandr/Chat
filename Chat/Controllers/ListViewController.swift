@@ -57,7 +57,7 @@ class ListViewController: UIViewController {
         createDataSource()
         reloadData()
         
-        waitingChatsListener = ListenerService.shared.waitingsChatObserve(chats: waitingChats, completion: { result in
+        waitingChatsListener = ListenerService.shared.waitingChatsObserve(chats: waitingChats, completion: { result in
             switch result {
             case .success(let chats):
                 if self.waitingChats != [], self.waitingChats.count <= chats.count {
@@ -104,6 +104,8 @@ class ListViewController: UIViewController {
         
         collectionView.register(ActiveChatCell.self, forCellWithReuseIdentifier: ActiveChatCell.reuseId)
         collectionView.register(WaitingChatCell.self, forCellWithReuseIdentifier: WaitingChatCell.reuseId)
+        
+        collectionView.delegate = self
     }
     
     private func reloadData() {
@@ -113,8 +115,6 @@ class ListViewController: UIViewController {
         snapshot.appendItems(activeChats, toSection: .activeChats)
        
         dataSource?.apply(snapshot, animatingDifferences: true)
-        
-        collectionView.delegate = self
     }
 }
 
@@ -268,22 +268,22 @@ extension ListViewController: WaitingChatsNavigation {
 }
 
 // MARK: - SwiftUI
-import SwiftUI
-
-struct ListVCProvider: PreviewProvider {
-    static var previews: some View {
-        ContainerView().edgesIgnoringSafeArea(.all)
-    }
-    
-    struct ContainerView: UIViewControllerRepresentable {
-        let viewController = MainTabBarController()
-        
-        func makeUIViewController(context: Context) -> some UIViewController {
-            return viewController
-        }
-        
-        func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
-    }
-}
+//import SwiftUI
+//
+//struct ListVCProvider: PreviewProvider {
+//    static var previews: some View {
+//        ContainerView().edgesIgnoringSafeArea(.all)
+//    }
+//    
+//    struct ContainerView: UIViewControllerRepresentable {
+//        let viewController = MainTabBarController()
+//        
+//        func makeUIViewController(context: Context) -> some UIViewController {
+//            return viewController
+//        }
+//        
+//        func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
+//    }
+//}
 
 

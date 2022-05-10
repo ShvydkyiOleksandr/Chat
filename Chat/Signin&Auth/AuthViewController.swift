@@ -49,7 +49,7 @@ class AuthViewController: UIViewController {
     }
     
     @objc private func googleButtonTapped() {
-        AuthenticationService.shared.googleLogin()
+        AuthenticationService.shared.googleLogin(viewController: self)
     }
 }
 
@@ -78,12 +78,12 @@ extension AuthViewController {
         view.addSubview(stackView)
         
         NSLayoutConstraint.activate([
-        logoImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 160),
+        logoImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 80),
         logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
         
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 160),
+            stackView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 80),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40)
         ])
@@ -91,20 +91,20 @@ extension AuthViewController {
 }
 
 // MARK: - SwiftUI
-import SwiftUI
-
-struct AuthVCProvider: PreviewProvider {
-    static var previews: some View {
-        ContainerView().edgesIgnoringSafeArea(.all)
-    }
-    
-    struct ContainerView: UIViewControllerRepresentable {
-        let viewController = AuthViewController()
-        
-        func makeUIViewController(context: Context) -> some UIViewController {
-            return viewController
-        }
-        
-        func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
-    }
-}
+//import SwiftUI
+//
+//struct AuthVCProvider: PreviewProvider {
+//    static var previews: some View {
+//        ContainerView().edgesIgnoringSafeArea(.all)
+//    }
+//
+//    struct ContainerView: UIViewControllerRepresentable {
+//        let viewController = AuthViewController()
+//
+//        func makeUIViewController(context: Context) -> some UIViewController {
+//            return viewController
+//        }
+//
+//        func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
+//    }
+//}

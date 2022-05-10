@@ -14,7 +14,7 @@ class PeopleViewController: UIViewController {
     var users = [MUser]()
     var usersListener: ListenerRegistration?
     
-    var collectionView: UICollectionView! = nil
+    var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, MUser>!
     
     enum Section: Int, CaseIterable {
@@ -28,7 +28,7 @@ class PeopleViewController: UIViewController {
         }
     }
     
-    private let currentUser: MUser
+    private var currentUser: MUser
     
     init(currentUser: MUser) {
         self.currentUser = currentUser
@@ -51,7 +51,7 @@ class PeopleViewController: UIViewController {
         setupColectionView()
         createDataSource()
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log out", style: .plain, target: self, action: #selector(SignOut))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log out", style: .plain, target: self, action: #selector(signOut))
         
         usersListener = ListenerService.shared.usersObserve(users: users, completion: { result in
             switch result {
@@ -62,9 +62,19 @@ class PeopleViewController: UIViewController {
                 self.showAlert(with: "Error", and: error.localizedDescription)
             }
         })
+        
+        guard let currentUser = Auth.auth().currentUser else { return }
+        FirestoreService.shared.getUserData(user: currentUser) { result in
+            switch result {
+            case .success(let muser):
+                self.currentUser = muser
+            case .failure(_):
+                return
+            }
+        }
     }
     
-    @objc private func SignOut() {
+    @objc private func signOut() {
         let ac = UIAlertController(title: nil, message: "Are you sure you want to sign out?", preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         ac.addAction(UIAlertAction(title: "Sign Out", style: .destructive, handler: { _ in
@@ -118,13 +128,14 @@ class PeopleViewController: UIViewController {
         snapshot.appendItems(filtered, toSection: .users)
     
         dataSource?.apply(snapshot, animatingDifferences: true)
+        collectionView.reloadData()
     }
 }
 
 // MARK: - DataSource
 extension PeopleViewController {
     private func createDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Section, MUser>(collectionView: collectionView, cellProvider: { collectionView, indexPath, user in
+        dataSource = UICollectionViewDiffableDataSource<Section, MUser>(collectionView: collectionView, cellProvider: { collectionView, indexPath, user -> UICollectionViewCell? in
             guard let section = Section(rawValue: indexPath.section) else {
                 fatalError("Unknown section kind")
             }
@@ -216,20 +227,20 @@ extension PeopleViewController: UICollectionViewDelegate {
 }
 
 // MARK: - SwiftUI
-import SwiftUI
-
-struct PeopleVCProvider: PreviewProvider {
-    static var previews: some View {
-        ContainerView().edgesIgnoringSafeArea(.all)
-    }
-    
-    struct ContainerView: UIViewControllerRepresentable {
-        let viewController = MainTabBarController()
-        
-        func makeUIViewController(context: Context) -> some UIViewController {
-            return viewController
-        }
-        
-        func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
-    }
-}
+//import SwiftUI
+//
+//struct PeopleVCProvider: PreviewProvider {
+//    static var previews: some View {
+//        ContainerView().edgesIgnoringSafeArea(.all)
+//    }
+//    
+//    struct ContainerView: UIViewControllerRepresentable {
+//        let viewController = MainTabBarController()
+//        
+//        func makeUIViewController(context: Context) -> some UIViewController {
+//            return viewController
+//        }
+//        
+//        func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
+//    }
+//}

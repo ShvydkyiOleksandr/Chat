@@ -39,6 +39,22 @@ class SignUpViewController: UIViewController {
         
         signUpButton.addTarget(self, action: #selector(signUpButtonTapped), for: .touchUpInside)
         loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
+        
+        emailTextField.keyboardType = .emailAddress
+        emailTextField.returnKeyType = .done
+        emailTextField.autocapitalizationType = UITextAutocapitalizationType.none
+        emailTextField.delegate = self
+        
+        passwordTextField.isSecureTextEntry = true
+        passwordTextField.returnKeyType = .done
+        passwordTextField.delegate = self
+        
+        confirmPasswordTextField.isSecureTextEntry = true
+        confirmPasswordTextField.returnKeyType = .done
+        confirmPasswordTextField.delegate = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(sender:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     @objc private func signUpButtonTapped() {
@@ -98,12 +114,12 @@ extension SignUpViewController {
         view.addSubview(bottomStackView)
         
         NSLayoutConstraint.activate([
-            welcomelabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 160),
+            welcomelabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
             welcomelabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
         
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: welcomelabel.bottomAnchor, constant: 160),
+            stackView.topAnchor.constraint(equalTo: welcomelabel.bottomAnchor, constant: 50),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40)
         ])
@@ -113,6 +129,23 @@ extension SignUpViewController {
             bottomStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
             bottomStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40)
         ])
+    }
+}
+
+// MARK: Text field delegate
+extension SignUpViewController: UITextFieldDelegate {
+    //Hide the keyboard on click on Done
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    @objc func keyboardWillShow(sender: NSNotification) {
+         self.view.frame.origin.y = -150 // Move view 150 points upward
+    }
+
+    @objc func keyboardWillHide(sender: NSNotification) {
+         self.view.frame.origin.y = 0 // Move view to original position
     }
 }
 

@@ -18,7 +18,7 @@ class SetupProfileViewController: UIViewController {
     let sexLabel = UILabel(text: "Sex")
     
     let fullNameTextField = OneLineTextField(font: .avenir20())
-    let AboutMeTextField = OneLineTextField(font: .avenir20())
+    let aboutMeTextField = OneLineTextField(font: .avenir20())
     let sexSegmentedControl = UISegmentedControl(firsrt: "Male", second: "Femail")
     
     let goToChatsButton = UIButton(title: "Go to chats", titleColor: .white, backgroundColor: .buttonDark(), cornerRadius: 4)
@@ -53,14 +53,30 @@ class SetupProfileViewController: UIViewController {
         
         goToChatsButton.addTarget(self, action: #selector(goToChatsButtonTapped), for: .touchUpInside)
         fullImageView.plusButton.addTarget(self, action: #selector(plusButtonTapped), for: .touchUpInside)
+        
+        fullImageView.circleImageView.layer.masksToBounds = true
+        fullImageView.circleImageView.layer.cornerRadius = fullImageView.circleImageView.frame.width / 2
+        
+        fullNameTextField.keyboardType = .emailAddress
+        fullNameTextField.returnKeyType = .done
+        fullNameTextField.autocapitalizationType = UITextAutocapitalizationType.none
+        fullNameTextField.delegate = self
+        
+        aboutMeTextField.keyboardType = .emailAddress
+        aboutMeTextField.returnKeyType = .done
+        aboutMeTextField.autocapitalizationType = UITextAutocapitalizationType.none
+        aboutMeTextField.delegate = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(sender:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     @objc private func goToChatsButtonTapped() {
         FirestoreService.shared.saveProfileWith(id: currentUser.uid,
                                                 email: currentUser.email!,
-                                                username: fullNamelabel.text,
+                                                username: fullNameTextField.text,
                                                 avatarImage: fullImageView.circleImageView.image,
-                                                description: aboutMeLabel.text,
+                                                description: aboutMeTextField.text,
                                                 sex: sexSegmentedControl.titleForSegment(at: sexSegmentedControl.selectedSegmentIndex)) { result in
             switch result {
             case .success(let muser):
@@ -96,7 +112,7 @@ extension SetupProfileViewController {
                                             spacing: 0)
         let aboutMeStackView = UIStackView(arrangedSubviews: [
         aboutMeLabel,
-        AboutMeTextField
+        aboutMeTextField
         ],
                                             axis: .vertical,
                                             spacing: 0)
@@ -126,7 +142,7 @@ extension SetupProfileViewController {
         view.addSubview(stackView)
         
         NSLayoutConstraint.activate([
-            welcomelabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 160),
+            welcomelabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 60),
             welcomelabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
         
@@ -152,21 +168,38 @@ extension SetupProfileViewController: UINavigationControllerDelegate, UIImagePic
     }
 }
 
-// MARK: - SwiftUI
-import SwiftUI
-
-struct SetupProfileVCProvider: PreviewProvider {
-    static var previews: some View {
-        ContainerView().edgesIgnoringSafeArea(.all)
+// MARK: Text field delegate
+extension SetupProfileViewController: UITextFieldDelegate {
+    //Hide the keyboard on click on Done
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
-    struct ContainerView: UIViewControllerRepresentable {
-        let viewController = SetupProfileViewController(currentUser: Auth.auth().currentUser!)
-        
-        func makeUIViewController(context: Context) -> some UIViewController {
-            return viewController
-        }
-        
-        func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
+    @objc func keyboardWillShow(sender: NSNotification) {
+         self.view.frame.origin.y = -150 // Move view 150 points upward
+    }
+
+    @objc func keyboardWillHide(sender: NSNotification) {
+         self.view.frame.origin.y = 0 // Move view to original position
     }
 }
+
+// MARK: - SwiftUI
+//import SwiftUI
+//
+//struct SetupProfileVCProvider: PreviewProvider {
+//    static var previews: some View {
+//        ContainerView().edgesIgnoringSafeArea(.all)
+//    }
+//
+//    struct ContainerView: UIViewControllerRepresentable {
+//        let viewController = SetupProfileViewController(currentUser: Auth.auth().currentUser!)
+//
+//        func makeUIViewController(context: Context) -> some UIViewController {
+//            return viewController
+//        }
+//
+//        func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
+//    }
+//}

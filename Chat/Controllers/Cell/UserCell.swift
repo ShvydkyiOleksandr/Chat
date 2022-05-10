@@ -10,8 +10,16 @@ import SDWebImage
 
 class UserCell: UICollectionViewCell, SelfConfiguringCell {
     
-    let userImageView = UIImageView()
-    let userLabel: UILabel = UILabel(text: "text", font: .LaoSangamMN20())
+    let userImageView: UIImageView = {
+        let view = UIImageView()
+        view.contentMode = .scaleAspectFill
+        view.clipsToBounds = true
+        return view
+    }()
+    
+    let userLabel: UILabel = UILabel(text: "text", font: .LaoSangamMN14())
+  
+    
     let containerView = UIView()
     
     static var reuseId: String = "UserCell"
@@ -48,7 +56,7 @@ class UserCell: UICollectionViewCell, SelfConfiguringCell {
         userImageView.translatesAutoresizingMaskIntoConstraints = false
         userLabel.translatesAutoresizingMaskIntoConstraints = false
         containerView.translatesAutoresizingMaskIntoConstraints = false
-        userImageView.backgroundColor = .red
+//        userImageView.backgroundColor = .red
         
         addSubview(containerView)
         containerView.addSubview(userImageView)
@@ -82,20 +90,20 @@ class UserCell: UICollectionViewCell, SelfConfiguringCell {
 }
 
 // MARK: - SwiftUI
-import SwiftUI
-
-struct UserChatProvider: PreviewProvider {
-    static var previews: some View {
-        ContainerView().edgesIgnoringSafeArea(.all)
-    }
-    
-    struct ContainerView: UIViewControllerRepresentable {
-        let viewController = MainTabBarController()
-        
-        func makeUIViewController(context: Context) -> some UIViewController {
-            return viewController
-        }
-        
-        func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
-    }
-}
+//import SwiftUI
+//
+//struct UserChatProvider: PreviewProvider {
+//    static var previews: some View {
+//        ContainerView().edgesIgnoringSafeArea(.all)
+//    }
+//    
+//    struct ContainerView: UIViewControllerRepresentable {
+//        let viewController = MainTabBarController()
+//        
+//        func makeUIViewController(context: Context) -> some UIViewController {
+//            return viewController
+//        }
+//        
+//        func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
+//    }
+//}

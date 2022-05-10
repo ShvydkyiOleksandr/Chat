@@ -124,7 +124,7 @@ extension ChatRequestViewController {
 }
 
 // MARK: - SwiftUI
-import SwiftUI
+//import SwiftUI
 
 //struct ChatRequestVCProvider: PreviewProvider {
 //    static var previews: some View {
@@ -132,7 +132,10 @@ import SwiftUI
 //    }
 //
 //    struct ContainerView: UIViewControllerRepresentable {
-//        let viewController = ChatRequestViewController()
+//        let viewController = ChatRequestViewController(chat: MChat(friendUsername: "Oleksandr",
+//                                                                   friendAvatarStringURL: "",
+//                                                                   lastMessageContent: "Hi",
+//                                                                   friendId: "1"))
 //
 //        func makeUIViewController(context: Context) -> some UIViewController {
 //            return viewController

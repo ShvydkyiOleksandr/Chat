@@ -40,52 +40,36 @@ class AuthenticationService {
         }
     }
     
-    func googleLogin() {
+    func googleLogin(viewController: UIViewController) {
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
-        
-        // Create Google Sign In configuration object.
         let config = GIDConfiguration(clientID: clientID)
-        
-        // Start the sign in flow!
-        
-        let topVC = UIApplication.getTopViewController()!
-        
-        GIDSignIn.sharedInstance.signIn(with: config, presenting: topVC) { user, error in
-            
+        GIDSignIn.sharedInstance.signIn(with: config, presenting: viewController) { user, error in
             if let error = error {
-                topVC.showAlert(with: "Error", and: error.localizedDescription)
+                viewController.showAlert(with: "Error", and: error.localizedDescription)
                 return
             }
-            
             guard let authentication = user?.authentication, let idToken = authentication.idToken else { return }
-            
             let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: authentication.accessToken)
-            
             Auth.auth().signIn(with: credential) { authResult, error in
-                
                 if let error = error {
-                    topVC.showAlert(with: "Error", and: error.localizedDescription)
+                    viewController.showAlert(with: "Error", and: error.localizedDescription)
                     return
                 }
-                
                 guard let user = authResult?.user else { return }
-                
                 FirestoreService.shared.getUserData(user: user) { result in
                     switch result {
                     case .success(let muser):
-                        topVC.showAlert(with: "Successfully", and: "You are authorized") {
+                        viewController.showAlert(with: "Successfully", and: "You are authorized") {
                             let mainTabBar = MainTabBarController(currentUser: muser)
                             mainTabBar.modalPresentationStyle = .fullScreen
-                            topVC.present(mainTabBar, animated: true, completion: nil)
+                            viewController.present(mainTabBar, animated: true, completion: nil)
                         }
                     case .failure(_):
-                        topVC.showAlert(with: "Successfully", and: "You are register") {
-                            topVC.present(SetupProfileViewController(currentUser: user), animated: true, completion: nil)
+                        viewController.showAlert(with: "Successfully", and: "You are register") {
+                            viewController.present(SetupProfileViewController(currentUser: user), animated: true, completion: nil)
                         }
-                    } // result
+                    }
                 }
-                // User is signed in
-                // ...
             }
         }
     }
